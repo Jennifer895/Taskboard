@@ -1,0 +1,89 @@
+ body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #mainHeader{
+            display: flex;
+            margin-left: 20em;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5em;
+            margin-left: 15em;
+            margin-right: 15em;
+        }
+
+        .card-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 2em;
+            width: 80%;
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .header-card {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 80%;
+            margin-top: 2em;
+        }
+
+
+
+        #taskPriority{
+            height: 2em;
+        }
+
+      
+.hidden {
+    display: none;
+}
+
+#modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modalWindow {
+   
+    background: white;
+    padding: 2em;
+    border-radius: 8px;
+    width: 400px;
+    height: 430px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+#taskForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 2em;
+        }
+#taskForm > * {
+  margin-bottom: 1.2em;
+}
+
+        

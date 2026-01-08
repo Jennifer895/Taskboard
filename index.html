@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taskboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+
+</head>
+<body>
+
+    <header id ="mainHeader">
+        <img src="logo.jpg" alt="Logo" class="logo" width="70px">
+        <h1>Taskboard</h1>
+    </header>
+
+    <div class="controls">
+        <button id="btnNewTicket" onclick="openAufgabeErstellen()">Neues Ticket anlegen</button>
+        <input type="text" id="ticketSearch" placeholder="Tickets suchen...">
+
+        <div><label for="sortSelect">Sortieren nach:</label>
+        <select id="sortSelect">
+            <option value="titel">Titel</option>
+            <option value="priorität">Priorität</option>
+            <option value="status">Status</option>
+            <option value="datum">Datum</option>
+        </select>
+        </div>
+   </div>
+</div>
+<div>
+<div class="card-list">
+    <article class="header-card">
+        
+    <h4 class="card-title">Titel</h4>
+    <p class="card-description">
+      Beschreibung
+    </p>
+    <label for="PrioritySelect">Priorität:</label>
+     
+    <p class="card-date">Datum</p>
+    <div> 
+        <p>Status:</p>
+    </div>
+      
+  </article>
+
+  <!-- Hier Beispielkarte -->
+
+  <article class="card">
+    <h4 class="card-title">Aufgabe 1</h4>
+    <p class="card-description">
+      Kurze Beschreibung der Aufgabe, was zu tun ist usw.
+    </p>
+     <select id="PrioritySelect">
+            <option value="none">Ohne</option>
+            <option value="high">Hoch</option>
+            <option value="medium">Mittel</option>
+            <option value="low">Niedrig</option>
+        </select>
+    <p class="card-date">Datum</p>
+    <div> 
+        <button type="button" class="btn btn-done"><img src="logo.jpg" alt="erledigt" class="card-user" width="20px"></button>
+        <button type="button" class="btn btn-edit"><img src="bearbeiten.jpeg" alt="erledigt" class="card-user" width="20px"></button
+    </div>
+      
+  </article>
+</div>
+  <!-- Hier kommen dynamische Karten rein -->
+</div>
+
+
+<!-- Modal Fenster für Aufgabe erstellen -->
+
+
+<div id="modalOverlay" class="hidden">
+    <div id="modalWindow">
+        <button id="closeModal" onclick="closeModal()">X</button>
+
+        <h2>Aufgabe erstellen</h2>
+
+        <form id="taskForm">
+            <label for="taskTitle">Titel:</label>
+            <input type="text" id="taskTitle" required>
+
+            <label for="taskDescription">Beschreibung:</label>
+            <textarea id="taskDescription" rows="4" required></textarea>
+
+            <label for="taskPriority">Priorität:</label>
+            <select id="taskPriority">
+                <option value="hoch">Hoch</option>
+                <option value="mittel">Mittel</option>
+                <option value="niedrig">Niedrig</option>
+            </select>
+
+            <button type="submit">Aufgabe erstellen</button>
+        </form>
+    </div>
+</div>
+
+
+
+</body>
+</html>
