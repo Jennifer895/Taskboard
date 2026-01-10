@@ -4,6 +4,22 @@ class TaskView {
         this.cardList = document.querySelector(".card-list");
         this.form = document.getElementById("taskForm");
         this.modal = document.getElementById("modalOverlay");
+
+        this.btnNewTicket = document.getElementById("btnNewTicket");
+        this.btnCloseModal = document.getElementById("btnCloseModal");
+
+        //test
+        console.log("View wurde erstellt.");
+        console.log("Habe ich den Button gefunden?", this.btnNewTicket);
+        console.log("Habe ich das Modal gefunden?", this.modal);
+    }
+
+    closeModal(){
+        this.modal.style.display = "none";
+    }
+
+    openModal(){
+        this.modal.style.display = "flex";
     }
 
     renderTasks(tasks) {

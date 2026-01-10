@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taskboard</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    
+    <script src="taskModel.js" defer></script>
+    <script src="taskView.js" defer></script>
+    <script src="taskControler.js" defer></script>
+    <script src="main.js" defer></script>
 
 </head>
 <body>
@@ -16,7 +20,7 @@
     </header>
 
     <div class="controls">
-        <button id="btnNewTicket" onclick="openAufgabeErstellen()">Neues Ticket anlegen</button>
+        <button id="btnNewTicket">Neues Ticket anlegen</button>
         <input type="text" id="ticketSearch" placeholder="Tickets suchen...">
 
         <div><label for="sortSelect">Sortieren nach:</label>
@@ -61,21 +65,19 @@
     <p class="card-date">Datum</p>
     <div> 
         <button type="button" class="btn btn-done"><img src="logo.jpg" alt="erledigt" class="card-user" width="20px"></button>
-        <button type="button" class="btn btn-edit"><img src="bearbeiten.jpeg" alt="erledigt" class="card-user" width="20px"></button
+        <button type="button" class="btn btn-edit"><img src="bearbeiten.jpeg" alt="erledigt" class="card-user" width="20px"></button>
     </div>
       
   </article>
-</div>
-  <!-- Hier kommen dynamische Karten rein -->
-</div>
 
+</div>
 
 <!-- Modal Fenster für Aufgabe erstellen -->
 
 
 <div id="modalOverlay" class="hidden">
     <div id="modalWindow">
-        <button id="closeModal" onclick="closeModal()">X</button>
+        <button id="btnCloseModal">X</button>
 
         <h2>Aufgabe erstellen</h2>
 

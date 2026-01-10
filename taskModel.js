@@ -37,4 +37,24 @@ class TaskModel {
             };
         });
     }
+
+    addTask(task) {
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(["tasks"], "readwrite");
+            const store = transaction.objectStore("tasks");
+            const request = store.add(task);
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject("Fehler beim Speichern");
+        });
+    }
+
+    getAllTasks() {
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(["tasks"], "readonly");
+            const store = transaction.objectStore("tasks");
+            const request = store.getAll();
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject("Fehler beim Laden");
+        });
+    }
 }
