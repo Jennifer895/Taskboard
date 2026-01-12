@@ -1,4 +1,4 @@
-class TaskModel {
+export class TaskModel {
     constructor() {
         this.dbName = "TaskBoardDB";
         this.dbVersion = 1;
@@ -37,4 +37,45 @@ class TaskModel {
             };
         });
     }
+
+    /**
+     * Löscht eine Aufgabe anhand ihrer ID.
+     * @param {number} id - Die ID der Aufgabe
+     */
+    deleteTask(id) {
+        return new Promise((resolve, reject) => {
+            // "readwrite" weil wir etwas ändern
+            const transaction = this.db.transaction(["tasks"], "readwrite");
+            const store = transaction.objectStore("tasks");
+            
+            // WICHTIG: delete erwartet die ID im gleichen Format wie gespeichert (meist Number)
+            const request = store.delete(id);
+
+            request.onsuccess = () => resolve();
+            request.onerror = (event) => reject("Fehler beim Löschen: " + event.target.error);
+        });
+    }
+    getTaskById(id) {
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(["tasks"], "readonly");
+            const store = transaction.objectStore("tasks");
+            const request = store.get(id);
+
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject("Fehler beim Laden");
+        });
+    }
+
+    updateTask(task) {
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(["tasks"], "readwrite");
+            const store = transaction.objectStore("tasks");
+            // .put() ist der Alleskönner: Update wenn ID da ist, Insert wenn nicht
+            const request = store.put(task); 
+
+            request.onsuccess = () => resolve();
+            request.onerror = (event) => reject("Fehler beim Update", event.target.error);
+        });
+    }
+
 }

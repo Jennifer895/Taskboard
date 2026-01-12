@@ -17,7 +17,7 @@
 
     <div class="controls">
         <button id="btnNewTicket" onclick="openAufgabeErstellen()">Neues Ticket anlegen</button>
-        <input type="text" id="ticketSearch" placeholder="Tickets suchen...">
+        <input type="text" id="ticketSearchInput" placeholder="Tickets suchen...">
 
         <div><label for="sortSelect">Sortieren nach:</label>
         <select id="sortSelect">
@@ -61,7 +61,8 @@
     <p class="card-date">Datum</p>
     <div> 
         <button type="button" class="btn btn-done"><img src="logo.jpg" alt="erledigt" class="card-user" width="20px"></button>
-        <button type="button" class="btn btn-edit"><img src="bearbeiten.jpeg" alt="erledigt" class="card-user" width="20px"></button
+        <button type="button" class="btn btn-edit"><img src="bearbeiten.jpeg" alt="bearbeiten" class="card-user" width="20px"></button>
+        <button type="button" class="btn btn-delete"><img src="loeschensymbol.png" alt="löschen" class="card-user" width="20px"></button>
     </div>
       
   </article>
@@ -98,7 +99,9 @@
     </div>
 </div>
 
-
+<div id="contextMenu" class="context-menu hidden">
+    <div id="btnDeleteTask">🗑 Löschen</div>
+</div>
 
 </body>
 </html>
