@@ -6,10 +6,8 @@
     <title>Taskboard</title>
     <link rel="stylesheet" href="styles.css">
     
-    <script src="taskModel.js" defer></script>
-    <script src="taskView.js" defer></script>
-    <script src="taskControler.js" defer></script>
-    <script src="main.js" defer></script>
+   
+    <script type="module" src="main.js"></script>
 
 </head>
 <body>
@@ -21,7 +19,7 @@
 
     <div class="controls">
         <button id="btnNewTicket">Neues Ticket anlegen</button>
-        <input type="text" id="ticketSearch" placeholder="Tickets suchen...">
+        <input type="text" id="ticketSearchInput" placeholder="Tickets suchen...">
 
         <div><label for="sortSelect">Sortieren nach:</label>
         <select id="sortSelect">
@@ -31,8 +29,8 @@
             <option value="datum">Datum</option>
         </select>
         </div>
-   </div>
-</div>
+
+    </div>
 <div>
 <div class="card-list">
     <article class="header-card">
@@ -49,27 +47,6 @@
     </div>
       
   </article>
-
-  <!-- Hier Beispielkarte -->
-
-  <article class="card">
-    <h4 class="card-title">Aufgabe 1</h4>
-    <p class="card-description">
-      Kurze Beschreibung der Aufgabe, was zu tun ist usw.
-    </p>
-     <select id="PrioritySelect">
-            <option value="high">Hoch</option>
-            <option value="medium">Mittel</option>
-            <option value="low">Niedrig</option>
-        </select>
-    <p class="card-date">Datum</p>
-    <div> 
-        <button type="button" class="btn btn-done"><img src="logo.jpg" alt="erledigt" class="card-user" width="20px"></button>
-        <button type="button" class="btn btn-edit"><img src="bearbeiten.jpeg" alt="erledigt" class="card-user" width="20px"></button>
-    </div>
-      
-  </article>
-
 </div>
 
 <!-- Modal Fenster für Aufgabe erstellen -->
@@ -100,7 +77,9 @@
     </div>
 </div>
 
-
+<div id="contextMenu" class="context-menu hidden">
+    <div id="btnDeleteTask">🗑 Löschen</div>
+</div>
 
 </body>
 </html>

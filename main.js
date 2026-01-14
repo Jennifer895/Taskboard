@@ -1,8 +1,13 @@
-document.addEventListener("DOMContentLoaded", () => {
-   
-    const appModel = new TaskModel();
-    const appView = new TaskView();
-    const appController = new TaskController(appModel, appView);
+import { TaskModel } from "./taskModel.js";
+import { TaskView } from "./taskView.js";
+import { TaskController } from "./taskController.js"; 
 
-    appController.init();
+
+document.addEventListener("DOMContentLoaded", () => {
+    const model = new TaskModel();
+    const view = new TaskView();
+    const controller = new TaskController(model, view);
+
+    controller.init();
 });
+

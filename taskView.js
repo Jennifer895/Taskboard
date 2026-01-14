@@ -1,4 +1,4 @@
-class TaskView {
+export class TaskView {
 
     constructor() {
         this.cardList = document.querySelector(".card-list");
@@ -8,14 +8,13 @@ class TaskView {
         this.btnNewTicket = document.getElementById("btnNewTicket");
         this.btnCloseModal = document.getElementById("btnCloseModal");
 
-        //test
-        console.log("View wurde erstellt.");
-        console.log("Habe ich den Button gefunden?", this.btnNewTicket);
-        console.log("Habe ich das Modal gefunden?", this.modal);
+        this.searchInput = document.getElementById("ticketSearchInput");
+        this.sortSelect = document.getElementById("sortSelect");
     }
 
     closeModal(){
         this.modal.style.display = "none";
+        this.resetFormUI(); // Wichtig: Formular zurücksetzen beim Schließen
     }
 
     openModal(){
@@ -28,22 +27,45 @@ class TaskView {
     }
 
     createTaskCard(task) {
-    const cardList = document.getElementsByClassName("card-list")[0];
-    const card = document.createElement("article");
-    card.classList.add("card");
-    card.innerHTML = `
-        <h3>${task.title}</h3>
-        <p>${task.description}</p>
-        <select class="PrioritySelect">
-            <option value="high" ${task.priority === "high" ? "selected" : ""}>Hoch</option>
-            <option value="medium" ${task.priority === "medium" ? "selected" : ""}>Mittel</option>
-            <option value="low" ${task.priority === "low" ? "selected" : ""}>Niedrig</option>
-        </select>
-        <p>Datum: ${task.date}</p>
-        <div> 
-            <button type="button" class="btn btn-done"><img src="logo.jpg" alt="erledigt" class="card-user" width="20px"></button>
-            <button type="button" class="btn btn-edit"><img src="bearbeiten.jpeg" alt="erledigt" class="card-user" width="20px"></button>
-        </div>
-    `;
-    cardList.appendChild(card);
-}}
+        const card = document.createElement("article");
+        card.classList.add("card");
+        
+        // CSS Klasse hinzufügen, wenn erledigt
+        if (task.doneState) {
+            card.classList.add("done"); // Du musst im CSS noch .done { opacity: 0.5; } oder ähnlich definieren
+        }
+
+        card.dataset.id = task.id;
+        
+        // Mapping für schöne Anzeige der Priorität (high -> Hoch)
+        const prioMap = { "high": "Hoch", "medium": "Mittel", "low": "Niedrig" };
+
+        card.innerHTML = `
+            <h3>${task.title}</h3>
+            <p>${task.description}</p>
+            <div>Priorität: <strong>${prioMap[task.priority]}</strong></div>
+            <p class="card-date">Datum: ${task.date}</p>
+            <div> 
+                <button type="button" class="btn btn-done">${task.doneState ? '↩️' : '✔️'}</button>
+                <button type="button" class="btn btn-edit">✏️</button>
+                <button type="button" class="btn btn-delete">🗑</button>
+            </div>
+        `;
+        this.cardList.appendChild(card);
+    }
+
+    fillForm(task) {
+        document.getElementById("taskTitle").value = task.title;
+        document.getElementById("taskDescription").value = task.description;
+        document.getElementById("taskPriority").value = task.priority;
+        
+        document.querySelector("#modalWindow h2").textContent = "Aufgabe bearbeiten";
+        document.querySelector("#taskForm button[type='submit']").textContent = "Änderungen speichern";
+    }
+
+    resetFormUI() {
+        this.form.reset();
+        document.querySelector("#modalWindow h2").textContent = "Aufgabe erstellen";
+        document.querySelector("#taskForm button[type='submit']").textContent = "Aufgabe erstellen";
+    }
+}
