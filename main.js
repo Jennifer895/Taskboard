@@ -1,6 +1,6 @@
 import { TaskModel } from "./taskModel.js";
 import { TaskView } from "./taskView.js";
-import { TaskController } from "./taskController.js"; 
+import { TaskController } from "./taskControler.js"; 
 
 
 document.addEventListener("DOMContentLoaded", () => {
