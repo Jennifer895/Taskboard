@@ -1,3 +1,0 @@
-index html logic trennen
-zusammenhänge prüfen
-index db und anzeige prüfen

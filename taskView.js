@@ -32,7 +32,7 @@ export class TaskView {
         
         // CSS Klasse hinzufügen, wenn erledigt
         if (task.doneState) {
-            card.classList.add("done"); // Du musst im CSS noch .done { opacity: 0.5; } oder ähnlich definieren
+            card.classList.add("done");
         }
 
         card.dataset.id = task.id;

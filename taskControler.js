@@ -3,15 +3,13 @@ export class TaskController {
         this.model = model;
         this.view = view;
 
-        // STATUS-VARIABLE: ID merken beim Bearbeiten (null = neu)
+        // Variable, um zu verfolgen, ob wir im "Bearbeiten"-Modus sind
         this.currentEditId = null;
 
-        // Event-Listener initialisieren
         this.initEventListeners();
     }
 
     initEventListeners() {
-        // 1. Formular Submit (Erstellen oder Update)
         this.view.form.addEventListener("submit", (e) => this.handleFormSubmit(e));
 
         // 2. Modal Öffnen/Schließen
@@ -32,7 +30,6 @@ export class TaskController {
         this.view.sortSelect.addEventListener("change", (e) => this.handleSort(e.target.value));
 
         // 5. Buttons auf den Karten (Löschen / Bearbeiten / Erledigt)
-        // Wir nutzen "Event Delegation" auf der Liste, statt Listener auf jeden Button zu setzen
         this.view.cardList.addEventListener("click", (e) => this.handleCardClick(e));
     }
 
@@ -56,7 +53,6 @@ export class TaskController {
         const description = document.getElementById("taskDescription").value;
         const priority = document.getElementById("taskPriority").value;
         
-        // Datum hier noch nicht setzen, hängt davon ab, ob neu oder edit
         let date = new Date().toLocaleDateString();
         let doneState = false;
 
@@ -64,7 +60,6 @@ export class TaskController {
             // UPDATE FALL: Alte Daten holen, um Datum und Status zu retten
             const oldTask = await this.model.getTaskById(this.currentEditId);
             
-            // Behalte das ursprüngliche Datum und den Status bei!
             date = oldTask.date; 
             doneState = oldTask.doneState;
 
@@ -84,8 +79,8 @@ export class TaskController {
                 title: title,
                 description: description,
                 priority: priority,
-                date: date, // Neues Datum
-                doneState: false // Neuer Status
+                date: date, 
+                doneState: false 
             };
             await this.model.addTask(taskObj);
         }
@@ -119,7 +114,7 @@ export class TaskController {
 
             const task = await this.model.getTaskById(taskId);
             
-            this.currentEditId = taskId; // WICHTIG: Modus auf "Bearbeiten" setzen
+            this.currentEditId = taskId; // Modus auf "Bearbeiten" setzen
             this.view.fillForm(task);
             this.view.openModal();
             return;
